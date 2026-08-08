@@ -303,6 +303,10 @@ export default function ImageCompressor() {
       {/* 1. Dropzone */}
       {!file ? (
         <div
+          role="button"
+          tabIndex={0}
+          aria-label="Upload image file to compress"
+          onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') fileInputRef.current?.click(); }}
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
@@ -317,6 +321,7 @@ export default function ImageCompressor() {
             ref={fileInputRef}
             type="file"
             accept="image/png, image/jpeg, image/webp"
+            aria-label="File upload selector"
             className="hidden"
             onChange={(e) => e.target.files && handleFileSelect(e.target.files[0])}
           />
@@ -360,6 +365,7 @@ export default function ImageCompressor() {
 
             <button
               onClick={handleReset}
+              aria-label="Choose another image to compress"
               className="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-3.5 py-2 text-xs sm:text-sm font-medium text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition-colors"
             >
               <RefreshCw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
@@ -378,14 +384,16 @@ export default function ImageCompressor() {
               
               {/* Option A: Target Format */}
               <div className="space-y-1.5 sm:space-y-2">
-                <label className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500">
+                <label id="format-label" className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500">
                   Target Format
                 </label>
-                <div className="grid grid-cols-3 gap-1.5 p-1 bg-slate-100 rounded-xl">
+                <div role="group" aria-labelledby="format-label" className="grid grid-cols-3 gap-1.5 p-1 bg-slate-100 rounded-xl">
                   {FORMAT_OPTIONS.map((f) => (
                     <button
                       key={f}
                       onClick={() => setFormat(f)}
+                      aria-label={`Select ${f} target image format`}
+                      aria-pressed={format === f}
                       className={`py-2 text-xs font-semibold rounded-lg transition-all ${
                         format === f
                           ? 'bg-white text-blue-600 shadow-sm'
@@ -401,7 +409,7 @@ export default function ImageCompressor() {
               {/* Option B: Quality Level Slider */}
               <div className="space-y-1.5 sm:space-y-2">
                 <div className="flex justify-between items-center">
-                  <label className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500">
+                  <label htmlFor="quality-slider" className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500">
                     Quality Level
                   </label>
                   <span className="text-xs font-bold px-2 py-0.5 bg-blue-50 text-blue-600 rounded-md">
@@ -410,11 +418,16 @@ export default function ImageCompressor() {
                 </div>
                 <div className="pt-1.5 sm:pt-2">
                   <input
+                    id="quality-slider"
                     type="range"
                     min="5"
                     max="100"
                     step="1"
                     value={quality}
+                    aria-label="Compression quality level percentage"
+                    aria-valuenow={quality}
+                    aria-valuemin={5}
+                    aria-valuemax={100}
                     onChange={(e) => setQuality(Number(e.target.value))}
                     className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
                   />
@@ -427,14 +440,16 @@ export default function ImageCompressor() {
 
               {/* Option C: Max Resolution Width */}
               <div className="space-y-1.5 sm:space-y-2">
-                <label className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500">
+                <label id="resolution-label" className="block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-slate-500">
                   Max Resolution Width
                 </label>
-                <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-2 gap-1.5 p-1 bg-slate-100 rounded-xl">
+                <div role="group" aria-labelledby="resolution-label" className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-2 gap-1.5 p-1 bg-slate-100 rounded-xl">
                   {MAX_WIDTH_OPTIONS.map((opt) => (
                     <button
                       key={opt.value}
                       onClick={() => setMaxWidth(opt.value)}
+                      aria-label={`Set resolution width to ${opt.label}`}
+                      aria-pressed={maxWidth === opt.value}
                       className={`py-2 text-xs font-semibold rounded-lg transition-all ${
                         maxWidth === opt.value
                           ? 'bg-white text-blue-600 shadow-sm'
@@ -452,14 +467,14 @@ export default function ImageCompressor() {
 
           {/* Error Banner */}
           {error && (
-            <div className="flex items-center space-x-3 p-4 bg-red-50 border border-red-200 text-red-700 rounded-2xl text-sm">
+            <div role="alert" className="flex items-center space-x-3 p-4 bg-red-50 border border-red-200 text-red-700 rounded-2xl text-sm">
               <AlertCircle className="w-5 h-5 flex-shrink-0" />
               <span>{error}</span>
             </div>
           )}
 
           {/* 4. Results Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          <div aria-live="polite" className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
             
             {/* Card 1: Original Size */}
             <div className="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm space-y-1">
@@ -531,7 +546,7 @@ export default function ImageCompressor() {
                   {originalUrl && (
                     <img
                       src={originalUrl}
-                      alt="Original image preview"
+                      alt="Original image full preview before compression"
                       className="max-h-full max-w-full object-contain"
                     />
                   )}
@@ -556,7 +571,7 @@ export default function ImageCompressor() {
                   {compressedUrl ? (
                     <img
                       src={compressedUrl}
-                      alt="Compressed image preview"
+                      alt="Compressed output image preview"
                       className="max-h-full max-w-full object-contain"
                     />
                   ) : (
@@ -573,6 +588,7 @@ export default function ImageCompressor() {
             <button
               onClick={handleDownload}
               disabled={isCompressing || !compressedBlob}
+              aria-label="Download compressed image to your device"
               className={`w-full sm:w-auto min-w-0 sm:min-w-[280px] py-3.5 sm:py-4 px-6 sm:px-8 rounded-2xl font-bold text-base sm:text-lg flex items-center justify-center space-x-2.5 transition-all duration-200 ${
                 isCompressing || !compressedBlob
                   ? 'bg-slate-200 text-slate-400 cursor-not-allowed'

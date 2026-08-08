@@ -5,15 +5,17 @@ interface Props {
   title?: string;
   description?: string;
   canonicalUrl?: string;
+  ogImage?: string;
 }
 
 const {
   title = "Free Online Image Compressor - 100% Private In-Browser Tool",
   description = "Compress WEBP, JPEG, and PNG images directly in your browser with zero quality loss. 100% free, private, and secure - no files ever leave your device.",
-  canonicalUrl = "https://free-image-compressor.github.io/"
+  canonicalUrl = "https://free-image-compressor.github.io/",
+  ogImage = "https://res.cloudinary.com/dpx6w78bt/image/upload/f_auto/q_auto/v1786165848/2_ifm3e7.png"
 } = Astro.props;
 
-const jsonLdSchema = {
+const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "Free Online Image Compressor",
@@ -35,6 +37,45 @@ const jsonLdSchema = {
     "Instant download with zero watermarks"
   ]
 };
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is my data safe when using this image compressor?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, 100%! Unlike standard online compression sites that send your photos to remote cloud servers, our tool processes all images locally inside your web browser. No image data is ever transferred over the internet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why should I convert images to WEBP format?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WEBP is a modern image format developed by Google that provides superior lossy and lossless compression for web images. WebP images are typically 25% to 35% smaller than equivalent JPEG or PNG files without sacrificing quality."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much file size can I reduce?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depending on the original format and target quality setting, file size reductions generally range from 40% up to 90%. Converting large camera JPEGs to 80% WEBP delivers huge file size savings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a file limit or subscription fee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No! The tool is completely free with no usage limits, no file size caps, no sign-ups, and zero watermarks."
+      }
+    }
+  ]
+};
 ---
 
 <!DOCTYPE html>
@@ -42,7 +83,11 @@ const jsonLdSchema = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Primary SEO Meta Tags -->
@@ -59,7 +104,7 @@ const jsonLdSchema = {
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://free-image-compressor.github.io/og-image.png" />
+    <meta property="og:image" content={ogImage} />
     <meta property="og:site_name" content="Free Image Compressor" />
 
     <!-- Twitter -->
@@ -67,15 +112,16 @@ const jsonLdSchema = {
     <meta property="twitter:url" content={canonicalUrl} />
     <meta property="twitter:title" content={title} />
     <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content="https://free-image-compressor.github.io/og-image.png" />
+    <meta property="twitter:image" content={ogImage} />
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- Structured Data (SoftwareApplication JSON-LD Schema) -->
-    <script type="application/ld+json" set:html={JSON.stringify(jsonLdSchema)} />
+    <!-- Structured Data (SoftwareApplication + FAQPage JSON-LD Schemas) -->
+    <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </head>
   <body class="bg-slate-50/50 text-slate-900 font-sans antialiased min-h-screen flex flex-col selection:bg-blue-500 selection:text-white">
     <slot />
