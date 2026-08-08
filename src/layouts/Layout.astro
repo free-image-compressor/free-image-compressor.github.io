@@ -1,0 +1,83 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalUrl?: string;
+}
+
+const {
+  title = "Free Online Image Compressor - 100% Private In-Browser Tool",
+  description = "Compress WEBP, JPEG, and PNG images directly in your browser with zero quality loss. 100% free, private, and secure - no files ever leave your device.",
+  canonicalUrl = "https://free-image-compressor.github.io/"
+} = Astro.props;
+
+const jsonLdSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Free Online Image Compressor",
+  "operatingSystem": "Any",
+  "applicationCategory": "MultimediaApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": description,
+  "browserRequirements": "Requires JavaScript. Requires HTML5 Canvas support.",
+  "softwareRequirements": "Modern Web Browser (Chrome, Firefox, Safari, Edge)",
+  "featureList": [
+    "100% In-browser private compression",
+    "Supports WEBP, JPEG, and PNG image formats",
+    "Custom quality percentage slider",
+    "Max width resolution options (Original, 1920px, 1280px, 800px)",
+    "Instant download with zero watermarks"
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="image compressor, compress image online, free webp converter, compress jpeg, compress png, client side image compression, privacy image tool" />
+    <meta name="author" content="Free Image Compressor" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://free-image-compressor.github.io/og-image.png" />
+    <meta property="og:site_name" content="Free Image Compressor" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content="https://free-image-compressor.github.io/og-image.png" />
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data (SoftwareApplication JSON-LD Schema) -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLdSchema)} />
+  </head>
+  <body class="bg-slate-50/50 text-slate-900 font-sans antialiased min-h-screen flex flex-col selection:bg-blue-500 selection:text-white">
+    <slot />
+  </body>
+</html>

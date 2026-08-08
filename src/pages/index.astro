@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ImageCompressor from '../components/ImageCompressor.jsx';
+---
+
+<Layout
+  title="Free Online Image Compressor - 100% Private In-Browser Tool"
+  description="Compress WEBP, JPEG, and PNG images directly in your browser with zero quality loss. 100% free, private, and secure - no files ever leave your device."
+>
+  <!-- Header Navbar -->
+  <header class="w-full bg-white/90 backdrop-blur-md border-b border-slate-200/80 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between gap-2">
+      <a href="#" class="flex items-center space-x-2.5 sm:space-x-3 group">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-600 p-1.5 shadow-md shadow-blue-500/25 flex-shrink-0 flex items-center justify-center group-hover:scale-105 transition-transform">
+          <svg viewBox="0 0 128 128" fill="none" class="w-full h-full">
+            <rect x="24" y="24" width="80" height="80" rx="16" stroke="#FFFFFF" stroke-width="8" fill="none" opacity="0.95" />
+            <circle cx="44" cy="44" r="9" fill="#FFFFFF" />
+            <path d="M30 88L52 62L68 80L82 66L98 88H30Z" fill="#FFFFFF" opacity="0.9" />
+            <path d="M84 18L64 52H78L70 86L100 44H84L92 18Z" fill="#FACC15" />
+          </svg>
+        </div>
+        <span class="font-extrabold text-base sm:text-xl tracking-tight text-slate-900 leading-tight">
+          Free Image <span class="text-blue-600">Compressor</span>
+        </span>
+      </a>
+
+      <nav class="flex items-center space-x-3 sm:space-x-4">
+        <span class="hidden md:inline-flex items-center px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-semibold">
+          🔒 100% Private & In-Browser
+        </span>
+        <a
+          href="#faq"
+          class="text-xs sm:text-sm font-semibold text-slate-600 hover:text-blue-600 px-2.5 py-1.5 rounded-lg hover:bg-slate-100 transition-all"
+        >
+          FAQ
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-6xl w-full mx-auto px-3.5 sm:px-6 py-8 sm:py-12 md:py-16 space-y-10 sm:space-y-16">
+    
+    <!-- Hero Section -->
+    <section class="text-center space-y-3.5 sm:space-y-4 max-w-3xl mx-auto px-2">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-[11px] sm:text-xs font-bold tracking-wide uppercase">
+        <span>Pure Client-Side Compression</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-black text-slate-900 tracking-tight leading-[1.18] sm:leading-[1.15]">
+        Free Online <span class="text-blue-600">Image Compressor</span>
+      </h1>
+
+      <p class="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed font-normal max-w-2xl mx-auto">
+        Compress WEBP, JPEG, and PNG images directly inside your browser. No files are uploaded to any server - ensuring 100% privacy, maximum security, and instant performance.
+      </p>
+    </section>
+
+    <!-- Core Interactive Tool (React Island) -->
+    <section id="compressor" class="w-full">
+      <ImageCompressor client:load />
+    </section>
+
+    <!-- Value Propositions / Feature Cards -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 pt-4 sm:pt-8">
+      
+      <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-2.5 sm:space-y-3">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl sm:text-2xl font-bold">
+          🛡️
+        </div>
+        <h3 class="text-base sm:text-lg font-bold text-slate-900">100% Private & Local</h3>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          Your photos never leave your computer or smartphone. All optimization runs locally using client-side HTML5 Web Workers.
+        </p>
+      </div>
+
+      <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-2.5 sm:space-y-3">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl sm:text-2xl font-bold">
+          ⚡
+        </div>
+        <h3 class="text-base sm:text-lg font-bold text-slate-900">Ultra Fast Processing</h3>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          No waiting for uploads or server responses. Experience instantaneous image compression with zero bandwidth throttling.
+        </p>
+      </div>
+
+      <div class="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-2.5 sm:space-y-3 sm:col-span-2 md:col-span-1">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl sm:text-2xl font-bold">
+          🎯
+        </div>
+        <h3 class="text-base sm:text-lg font-bold text-slate-900">Smart WEBP, JPEG & PNG</h3>
+        <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+          Convert heavy PNG or JPEG files into highly compressed WEBP images or fine-tune quality percentages with real-time previews.
+        </p>
+      </div>
+
+    </section>
+
+    <!-- FAQ Section for SEO -->
+    <section id="faq" class="bg-white p-5 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl border border-slate-200/80 shadow-sm space-y-6 sm:space-y-8">
+      <div class="text-center space-y-1.5 sm:space-y-2">
+        <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900">
+          Frequently Asked Questions
+        </h2>
+        <p class="text-slate-500 text-xs sm:text-sm">
+          Everything you need to know about browser-based image compression.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 pt-2">
+        
+        <div class="space-y-1.5 p-4 rounded-xl bg-slate-50 border border-slate-100">
+          <h3 class="font-bold text-slate-800 text-sm sm:text-base">
+            Is my data safe when using this image compressor?
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Yes, 100%! Unlike standard online compression sites that send your photos to remote cloud servers, our tool processes all images locally inside your web browser. No image data is ever transferred over the internet.
+          </p>
+        </div>
+
+        <div class="space-y-1.5 p-4 rounded-xl bg-slate-50 border border-slate-100">
+          <h3 class="font-bold text-slate-800 text-sm sm:text-base">
+            Why should I convert images to WEBP format?
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            WEBP is a modern image format developed by Google that provides superior lossy and lossless compression for web images. WebP images are typically 25% to 35% smaller than equivalent JPEG or PNG files without sacrificing quality.
+          </p>
+        </div>
+
+        <div class="space-y-1.5 p-4 rounded-xl bg-slate-50 border border-slate-100">
+          <h3 class="font-bold text-slate-800 text-sm sm:text-base">
+            How much file size can I reduce?
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Depending on the original format and target quality setting, file size reductions generally range from 40% up to 90%. Converting large camera JPEGs to 80% WEBP delivers huge file size savings.
+          </p>
+        </div>
+
+        <div class="space-y-1.5 p-4 rounded-xl bg-slate-50 border border-slate-100">
+          <h3 class="font-bold text-slate-800 text-sm sm:text-base">
+            Is there a file limit or subscription fee?
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            No! The tool is completely free with no usage limits, no file size caps, no sign-ups, and zero watermarks.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="w-full bg-white border-t border-slate-200 mt-auto">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left text-xs text-slate-500">
+      <p>© {new Date().getFullYear()} Free Online Image Compressor. Built for privacy and speed.</p>
+      <p>100% Client-Side Processing • Zero Server Uploads</p>
+    </div>
+  </footer>
+</Layout>

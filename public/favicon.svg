@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563EB" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="zap" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FACC15" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Blue Squircle Background -->
+  <rect width="128" height="128" rx="32" fill="url(#bg)" />
+
+  <!-- Inner Image Frame -->
+  <rect x="24" y="24" width="80" height="80" rx="16" stroke="#FFFFFF" stroke-width="7" fill="none" opacity="0.95" />
+
+  <!-- Sun Circle -->
+  <circle cx="44" cy="44" r="8" fill="#FFFFFF" />
+
+  <!-- Mountain Landscape -->
+  <path d="M30 88L52 62L68 80L82 66L98 88H30Z" fill="#FFFFFF" opacity="0.9" />
+
+  <!-- Lightning Spark Compression Accent -->
+  <path d="M84 18L64 52H78L70 86L100 44H84L92 18Z" fill="url(#zap)" filter="url(#shadow)" />
+</svg>
