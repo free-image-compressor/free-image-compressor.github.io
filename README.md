@@ -9,6 +9,6 @@ A production-ready, 100% client-side web tool to compress WEBP, JPEG, and PNG im
 ### ☕ Support the Developer
 If you love this tool and find it useful, please consider supporting the developer:
 
-[![Support on Ko-fi](https://img.shields.io/badge/Support%20on-Ko--fi-FF5E5B?style=for-the-badge&logo=kofi&logoColor=white)](https://ko-fi.com/kishara)
+[![Buy Me a Coffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Gumroad-FF90E8?style=for-the-badge&logo=gumroad&logoColor=black)](https://kisharadilshan.gumroad.com/coffee)
 
-**Ko-fi Link**: [https://ko-fi.com/kishara](https://ko-fi.com/kishara)
+**Support Link**: [https://kisharadilshan.gumroad.com/coffee](https://kisharadilshan.gumroad.com/coffee)
